@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+
+{% block title %}VeroVista Results for "{{ query }}"{% endblock %}
+
+{% block content %}
+<div class="container content-section">
+    <div class="results-header animate-on-scroll">
+        <h1 class="page-title">
+            <i class="fas fa-search-plus"></i> Results for "{{ query }}"
+        </h1>
+        <div class="results-count">
+            {% if products %}
+                Found {{ products|length }} product{{ 's' if products|length != 1 else '' }}
+            {% else %}
+                No products found
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Search Again Section -->
+    <div class="search-again-section animate-on-scroll">
+        <form action="{{ url_for('search') }}" method="GET" class="search-again-form">
+            <div class="search-input-container">
+                <span class="icon-prefix"><i class="fas fa-search"></i></span>
+                <input type="text" name="query" value="{{ query }}" 
+                       placeholder="Search again..." required>
+                <button type="submit" class="search-btn">
+                    <i class="fas fa-search"></i> Search
+                </button>
+            </div>
+        </form>
+    </div>
+
+    {% if products %}
+        <div class="results-grid">
+            {% for product in products %}
+            {% set first_offer = product.offers[0] if product.offers else None %}
+
+            <div class="product-card animate-on-scroll" data-product-id="{{ product.product_id }}">
+                <a href="{{ url_for('product_detail', product_id=product.product_id) }}" class="product-link">
+                    <div class="image-container">
+                        {% if product.image_url %}
+                        <img src="{{ product.image_url }}" alt="{{ product.name | truncate(50) }}" loading="lazy">
+                        {% else %}
+                        <div class="placeholder-image">
+                            <i class="fas fa-image"></i>
+                        </div>
+                        {% endif %}
+
+                        <!-- Category Badge -->
+                        <div class="category-badge">{{ product.category }}</div>
+                    </div>
+
+                    <div class="card-content">
+                        <h3 class="product-title">{{ product.name | truncate(60, True) }}</h3>
+                        <p class="product-brand">{{ product.brand }}</p>
+
+                        <div class="price-section">
+                            {% if first_offer %}
+                                <div class="price-info">
+                                    <span class="price">₹{{ "%.0f"|format(first_offer.price) }}</span>
+                                    <span class="platform">on {{ first_offer.platform }}</span>
+                                </div>
+                                {% if first_offer.rating %}
+                                <div class="rating">
+                                    <i class="fas fa-star"></i> {{ "%.1f"|format(first_offer.rating) }}/5
+                                </div>
+                                {% endif %}
+                            {% else %}
+                                <div class="price-info">
+                                    <span class="price-na">Price N/A</span>
+                                </div>
+                            {% endif %}
+
+                            {% if product.offers|length > 1 %}
+                            <div class="offers-count">
+                                +{{ product.offers|length - 1 }} more offer{{ 's' if product.offers|length > 2 else '' }}
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Back to Top Button -->
+        <div class="back-to-top animate-on-scroll">
+            <a href="#" onclick="window.scrollTo(0,0); return false;" class="cta-button secondary">
+                <i class="fas fa-chevron-up"></i> Back to Top
+            </a>
+        </div>
+    {% else %}
+        <div class="no-results animate-on-scroll">
+            <div class="no-results-icon">
+                <i class="fas fa-search-minus"></i>
+            </div>
+            <h2>No products found for "{{ query }}"</h2>
+            <p>Try searching for:</p>
+            <ul class="search-suggestions">
+                <li><a href="{{ url_for('search', query='iphone') }}">iPhone</a></li>
+                <li><a href="{{ url_for('search', query='nike shoes') }}">Nike Shoes</a></li>
+                <li><a href="{{ url_for('search', query='laptop') }}">Laptop</a></li>
+                <li><a href="{{ url_for('search', query='headphones') }}">Headphones</a></li>
+            </ul>
+            <a href="{{ url_for('index') }}" class="cta-button">
+                <i class="fas fa-home"></i> Go Back Home
+            </a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

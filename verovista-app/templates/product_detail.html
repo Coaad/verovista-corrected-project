@@ -1,0 +1,162 @@
+{% extends "base.html" %}
+
+{% block title %}{{ product.name }} - VeroVista{% endblock %}
+
+{% block content %}
+<div class="container content-section">
+    <div class="product-detail-container animate-on-scroll">
+
+        <!-- Breadcrumb Navigation -->
+        <nav class="breadcrumb">
+            <a href="{{ url_for('index') }}"><i class="fas fa-home"></i> Home</a>
+            <span class="separator">></span>
+            <a href="{{ url_for('search', query=product.category.lower()) }}">{{ product.category }}</a>
+            <span class="separator">></span>
+            <span class="current">{{ product.name | truncate(30, True) }}</span>
+        </nav>
+
+        <div class="product-detail-grid">
+            <!-- Product Image Section -->
+            <div class="product-image-section">
+                <div class="main-image-container">
+                    <img src="{{ product.image_url }}" alt="{{ product.name }}" class="main-product-image">
+                </div>
+
+                <!-- Product Badges -->
+                <div class="product-badges">
+                    <span class="badge category">{{ product.category }}</span>
+                    <span class="badge brand">{{ product.brand }}</span>
+                    {% if product.offers|length > 1 %}
+                    <span class="badge offers">{{ product.offers|length }} Offers</span>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Product Information Section -->
+            <div class="product-info-section">
+                <h1 class="product-title">{{ product.name }}</h1>
+                <p class="product-description">{{ product.description }}</p>
+
+                <!-- Price Range Summary -->
+                {% set min_price = product.offers | selectattr('price') | map(attribute='price') | min %}
+                {% set max_price = product.offers | selectattr('price') | map(attribute='price') | max %}
+                {% if min_price and max_price %}
+                <div class="price-summary">
+                    <div class="price-range">
+                        <span class="price-from">₹{{ "%.0f"|format(min_price) }}</span>
+                        {% if min_price != max_price %}
+                        <span class="price-to">- ₹{{ "%.0f"|format(max_price) }}</span>
+                        {% endif %}
+                    </div>
+                    <div class="price-note">
+                        {% if min_price != max_price %}
+                        Save up to ₹{{ "%.0f"|format(max_price - min_price) }}
+                        {% else %}
+                        Same price across platforms
+                        {% endif %}
+                    </div>
+                </div>
+                {% endif %}
+
+                <!-- Quick Stats -->
+                <div class="product-stats">
+                    <div class="stat">
+                        <i class="fas fa-store"></i>
+                        <span>{{ product.offers|length }} Store{{ 's' if product.offers|length != 1 else '' }}</span>
+                    </div>
+                    {% set avg_rating = (product.offers | selectattr('rating') | map(attribute='rating') | list | sum) / (product.offers | selectattr('rating') | list | length) if product.offers | selectattr('rating') | list | length > 0 else None %}
+                    {% if avg_rating %}
+                    <div class="stat">
+                        <i class="fas fa-star"></i>
+                        <span>{{ "%.1f"|format(avg_rating) }}/5 Rating</span>
+                    </div>
+                    {% endif %}
+                    <div class="stat">
+                        <i class="fas fa-tag"></i>
+                        <span>{{ product.category }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Offers Section -->
+        <div class="offers-section">
+            <h2><i class="fas fa-shopping-cart"></i> Available Offers</h2>
+            <div class="offers-grid">
+                {% for offer in product.offers %}
+                <div class="offer-card">
+                    <div class="offer-header">
+                        <div class="platform-info">
+                            <h3 class="platform-name">{{ offer.platform }}</h3>
+                            {% if offer.rating %}
+                            <div class="platform-rating">
+                                <i class="fas fa-star"></i> {{ "%.1f"|format(offer.rating) }}/5
+                            </div>
+                            {% endif %}
+                        </div>
+                        <div class="offer-price">
+                            <span class="price">₹{{ "%.0f"|format(offer.price) }}</span>
+                        </div>
+                    </div>
+
+                    <div class="offer-details">
+                        <div class="availability {{ 'in-stock' if offer.availability == 'In Stock' else 'limited-stock' }}">
+                            <i class="fas fa-circle"></i> {{ offer.availability }}
+                        </div>
+                    </div>
+
+                    <div class="offer-actions">
+                        <a href="{{ offer.url }}" target="_blank" rel="noopener noreferrer nofollow" 
+                           class="view-deal-button">
+                            <i class="fas fa-external-link-alt"></i> View Deal
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Related Products Section -->
+        <div class="related-section">
+            <h2><i class="fas fa-lightbulb"></i> You Might Also Like</h2>
+            <div class="suggestions">
+                <a href="{{ url_for('search', query=product.brand + ' products') }}" class="suggestion-tag">
+                    More {{ product.brand }} Products
+                </a>
+                <a href="{{ url_for('search', query=product.category.lower()) }}" class="suggestion-tag">
+                    {{ product.category }} Category
+                </a>
+                {% for term in product.query_terms[:3] %}
+                <a href="{{ url_for('search', query=term) }}" class="suggestion-tag">
+                    {{ term|title }}
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Back Navigation -->
+        <div class="navigation-actions">
+            <button onclick="history.back()" class="cta-button secondary">
+                <i class="fas fa-arrow-left"></i> Go Back
+            </button>
+            <a href="{{ url_for('index') }}" class="cta-button">
+                <i class="fas fa-search"></i> Search More Products
+            </a>
+        </div>
+    </div>
+</div>
+
+<script>
+// Add product to history when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    const productId = '{{ product.product_id }}';
+    fetch('/api/add-to-history', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ product_id: productId })
+    }).catch(err => console.log('History update failed:', err));
+});
+</script>
+{% endblock %}

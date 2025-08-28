@@ -1,0 +1,345 @@
+[
+  {
+    "product_id": "sony-wh1000xm5",
+    "name": "Sony WH-1000XM5 Wireless Noise Canceling Headphones",
+    "brand": "Sony",
+    "category": "Electronics",
+    "description": "Industry-leading noise canceling with Dual Noise Sensor technology. Up to 30-hour battery life with quick charge. Crystal clear hands-free calling and Alexa voice control.",
+    "image_url": "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
+    "query_terms": [
+      "headphones",
+      "wireless",
+      "noise canceling",
+      "sony",
+      "trending",
+      "electronics"
+    ],
+    "offers": [
+      {
+        "platform": "Amazon",
+        "price": 24990.0,
+        "url": "https://amazon.in/sony-headphones",
+        "rating": 4.5,
+        "availability": "In Stock"
+      },
+      {
+        "platform": "Flipkart",
+        "price": 25499.0,
+        "url": "https://flipkart.com/sony-headphones",
+        "rating": 4.4,
+        "availability": "In Stock"
+      },
+      {
+        "platform": "Croma",
+        "price": 24799.0,
+        "url": "https://croma.com/sony-headphones",
+        "rating": 4.6,
+        "availability": "Limited Stock"
+      }
+    ]
+  },
+  {
+    "product_id": "iphone-15-pro",
+    "name": "Apple iPhone 15 Pro 128GB Natural Titanium",
+    "brand": "Apple",
+    "category": "Electronics",
+    "description": "iPhone 15 Pro with titanium design, A17 Pro chip, Pro camera system with 5x Telephoto, and Action button.",
+    "image_url": "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=400&h=400&fit=crop",
+    "query_terms": [
+      "iphone",
+      "apple",
+      "smartphone",
+      "mobile",
+      "trending",
+      "electronics"
+    ],
+    "offers": [
+      {
+        "platform": "Apple Store",
+        "price": 134900.0,
+        "url": "https://apple.com/in/iphone-15-pro",
+        "rating": 4.8,
+        "availability": "In Stock"
+      },
+      {
+        "platform": "Amazon",
+        "price": 132999.0,
+        "url": "https://amazon.in/iphone-15-pro",
+        "rating": 4.7,
+        "availability": "In Stock"
+      },
+      {
+        "platform": "Flipkart",
+        "price": 133999.0,
+        "url": "https://flipkart.com/iphone-15-pro",
+        "rating": 4.6,
+        "availability": "In Stock"
+      }
+    ]
+  },
+  {
+    "product_id": "nike-air-max-270",
+    "name": "Nike Air Max 270 Men's Running Shoes",
+    "brand": "Nike",
+    "category": "Shoes",
+    "description": "Nike's biggest heel Air unit yet delivers incredible comfort. Engineered mesh upper provides breathability where you need it most.",
+    "image_url": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=400&fit=crop",
+    "query_terms": [
+      "nike",
+      "shoes",
+      "running",
+      "air max",
+      "sneakers",
+      "trending"
+    ],
+    "offers": [
+      {
+        "platform": "Nike Store",
+        "price": 12795.0,
+        "url": "https://nike.com/in/air-max-270",
+        "rating": 4.5,
+        "availability": "In Stock"
+      },
+      {
+        "platform": "Amazon",
+        "price": 11999.0,
+        "url": "https://amazon.in/nike-air-max-270",
+        "rating": 4.3,
+        "availability": "In Stock"
+      },
+      {
+        "platform": "Myntra",
+        "price": 12299.0,
+        "url": "https://myntra.com/nike-air-max",
+        "rating": 4.4,
+        "availability": "In Stock"
+      }
+    ]
+  },
+  {
+    "product_id": "macbook-air-m2",
+    "name": "Apple MacBook Air 13-inch M2 Chip 256GB",
+    "brand": "Apple",
+    "category": "Electronics",
+    "description": "MacBook Air with M2 chip, 13.6-inch Liquid Retina display, 8GB memory, 256GB SSD storage, and all-day battery life.",
+    "image_url": "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=400&h=400&fit=crop",
+    "query_terms": [
+      "macbook",
+      "laptop",
+      "apple",
+      "m2",
+      "electronics"
+    ],
+    "offers": [
+      {
+        "platform": "Apple Store",
+        "price": 114900.0,
+        "url": "https://apple.com/in/macbook-air",
+        "rating": 4.8,
+        "availability": "In Stock"
+      },
+      {
+        "platform": "Amazon",
+        "price": 112999.0,
+        "url": "https://amazon.in/macbook-air-m2",
+        "rating": 4.7,
+        "availability": "In Stock"
+      }
+    ]
+  },
+  {
+    "product_id": "levis-501-jeans",
+    "name": "Levi's 501 Original Fit Men's Jeans",
+    "brand": "Levi's",
+    "category": "Clothing",
+    "description": "The original blue jean since 1873. A classic straight fit with a timeless style that's always on-trend.",
+    "image_url": "https://images.unsplash.com/photo-1542272604-787c3835535d?w=400&h=400&fit=crop",
+    "query_terms": [
+      "jeans",
+      "levis",
+      "clothing",
+      "denim",
+      "men"
+    ],
+    "offers": [
+      {
+        "platform": "Levi's Store",
+        "price": 4999.0,
+        "url": "https://levi.in/501-jeans",
+        "rating": 4.6,
+        "availability": "In Stock"
+      },
+      {
+        "platform": "Amazon",
+        "price": 4499.0,
+        "url": "https://amazon.in/levis-501-jeans",
+        "rating": 4.4,
+        "availability": "In Stock"
+      },
+      {
+        "platform": "Myntra",
+        "price": 4799.0,
+        "url": "https://myntra.com/levis-jeans",
+        "rating": 4.5,
+        "availability": "In Stock"
+      }
+    ]
+  },
+  {
+    "product_id": "samsung-galaxy-s24",
+    "name": "Samsung Galaxy S24 5G 128GB Onyx Black",
+    "brand": "Samsung",
+    "category": "Electronics",
+    "description": "Galaxy S24 with advanced AI features, improved camera system, and powerful Exynos 2400 processor.",
+    "image_url": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&h=400&fit=crop",
+    "query_terms": [
+      "samsung",
+      "galaxy",
+      "smartphone",
+      "android",
+      "electronics"
+    ],
+    "offers": [
+      {
+        "platform": "Samsung Store",
+        "price": 79999.0,
+        "url": "https://samsung.com/in/galaxy-s24",
+        "rating": 4.7,
+        "availability": "In Stock"
+      },
+      {
+        "platform": "Amazon",
+        "price": 77999.0,
+        "url": "https://amazon.in/galaxy-s24",
+        "rating": 4.5,
+        "availability": "In Stock"
+      }
+    ]
+  },
+  {
+    "product_id": "adidas-ultraboost-22",
+    "name": "Adidas Ultraboost 22 Running Shoes",
+    "brand": "Adidas",
+    "category": "Shoes",
+    "description": "Made with a series of recycled materials, these running shoes feature responsive BOOST midsole.",
+    "image_url": "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=400&h=400&fit=crop",
+    "query_terms": [
+      "adidas",
+      "ultraboost",
+      "running",
+      "shoes",
+      "sneakers"
+    ],
+    "offers": [
+      {
+        "platform": "Adidas Store",
+        "price": 17999.0,
+        "url": "https://adidas.co.in/ultraboost-22",
+        "rating": 4.6,
+        "availability": "In Stock"
+      },
+      {
+        "platform": "Amazon",
+        "price": 16999.0,
+        "url": "https://amazon.in/adidas-ultraboost",
+        "rating": 4.4,
+        "availability": "In Stock"
+      }
+    ]
+  },
+  {
+    "product_id": "zara-basic-tshirt",
+    "name": "Zara Men's Basic Cotton T-Shirt",
+    "brand": "Zara",
+    "category": "Clothing",
+    "description": "100% cotton basic t-shirt with crew neck. Comfortable fit perfect for everyday wear.",
+    "image_url": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&h=400&fit=crop",
+    "query_terms": [
+      "tshirt",
+      "zara",
+      "clothing",
+      "cotton",
+      "basic",
+      "men"
+    ],
+    "offers": [
+      {
+        "platform": "Zara Store",
+        "price": 1590.0,
+        "url": "https://zara.com/in/basic-tshirt",
+        "rating": 4.3,
+        "availability": "In Stock"
+      },
+      {
+        "platform": "Myntra",
+        "price": 1499.0,
+        "url": "https://myntra.com/zara-tshirt",
+        "rating": 4.2,
+        "availability": "In Stock"
+      }
+    ]
+  },
+  {
+    "product_id": "dell-xps13",
+    "name": "Dell XPS 13 Laptop Intel Core i7 16GB RAM",
+    "brand": "Dell",
+    "category": "Electronics",
+    "description": "Ultra-thin and light laptop with InfinityEdge display, Intel Core i7 processor, and premium build quality.",
+    "image_url": "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=400&h=400&fit=crop",
+    "query_terms": [
+      "dell",
+      "xps",
+      "laptop",
+      "computer",
+      "electronics"
+    ],
+    "offers": [
+      {
+        "platform": "Dell Store",
+        "price": 124999.0,
+        "url": "https://dell.com/in/xps-13",
+        "rating": 4.7,
+        "availability": "In Stock"
+      },
+      {
+        "platform": "Amazon",
+        "price": 119999.0,
+        "url": "https://amazon.in/dell-xps-13",
+        "rating": 4.6,
+        "availability": "In Stock"
+      }
+    ]
+  },
+  {
+    "product_id": "hm-hoodie",
+    "name": "H&M Men's Cotton Hoodie Sweatshirt",
+    "brand": "H&M",
+    "category": "Clothing",
+    "description": "Soft cotton hoodie with kangaroo pocket and adjustable drawstring hood. Regular fit.",
+    "image_url": "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=400&h=400&fit=crop",
+    "query_terms": [
+      "hoodie",
+      "hm",
+      "sweatshirt",
+      "clothing",
+      "cotton",
+      "trending"
+    ],
+    "offers": [
+      {
+        "platform": "H&M Store",
+        "price": 1999.0,
+        "url": "https://hm.com/in/hoodie",
+        "rating": 4.2,
+        "availability": "In Stock"
+      },
+      {
+        "platform": "Myntra",
+        "price": 1899.0,
+        "url": "https://myntra.com/hm-hoodie",
+        "rating": 4.1,
+        "availability": "In Stock"
+      }
+    ]
+  }
+]

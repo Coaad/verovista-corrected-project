@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{% block title %}Your VeroVista Profile{% endblock %}
+
+{% block content %}
+<div class="container content-section">
+    <div class="profile-container animate-on-scroll">
+        <div class="profile-card">
+            <div class="profile-header">
+                <div class="profile-avatar">
+                    {% if user.picture %}
+                        <img src="{{ user.picture }}" alt="Profile Picture">
+                    {% else %}
+                        <i class="fas fa-user-circle"></i>
+                    {% endif %}
+                </div>
+                <div class="profile-info">
+                    <h1>{{ user.get('name', 'User') }}</h1>
+                    <p class="email">{{ user.get('email', 'N/A') }}</p>
+                    <div class="verification-status">
+                        {% if user.get('email_verified') %}
+                            <i class="fas fa-check-circle verified"></i> Email Verified
+                        {% else %}
+                            <i class="fas fa-exclamation-triangle unverified"></i> Email Not Verified
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-stats">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>{{ session.get('history', [])|length }}</h3>
+                        <p>Products Viewed</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Active</h3>
+                        <p>Account Status</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-calendar"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>{{ now.strftime('%b %Y') }}</h3>
+                        <p>Member Since</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-actions">
+                <a href="{{ url_for('history') }}" class="action-button primary">
+                    <i class="fas fa-history"></i> View Search History
+                </a>
+                {% if GOOGLE_LOGIN_ENABLED %}
+                <a href="{{ url_for('store_data') }}" class="action-button secondary">
+                    <i class="fab fa-google-drive"></i> Export Data to Drive
+                </a>
+                {% endif %}
+                <a href="{{ url_for('logout') }}" class="action-button danger">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </div>
+        </div>
+
+        <div class="profile-features">
+            <h2><i class="fas fa-star"></i> Your VeroVista Benefits</h2>
+            <div class="features-list">
+                <div class="feature-item">
+                    <i class="fas fa-history"></i>
+                    <div>
+                        <h3>Search History</h3>
+                        <p>Keep track of products you've viewed and easily find them again.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-bell"></i>
+                    <div>
+                        <h3>Price Alerts (Coming Soon)</h3>
+                        <p>Get notified when prices drop on your favorite products.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-bookmark"></i>
+                    <div>
+                        <h3>Wishlist (Coming Soon)</h3>
+                        <p>Save products to your wishlist for future reference.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

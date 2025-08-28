@@ -1,0 +1,162 @@
+{% extends "base.html" %}
+
+{% block title %}Page Not Found (404) - VeroVista{% endblock %}
+
+{% block content %}
+<div class="container content-section">
+    <div class="error-page animate-on-scroll">
+        <div class="error-illustration">
+            <i class="fas fa-search-minus"></i>
+        </div>
+
+        <div class="error-content">
+            <h1 class="error-code">404</h1>
+            <h2 class="error-title">Oops! Page Not Found</h2>
+            <p class="error-message">
+                The page you're looking for seems to have vanished into the digital void. 
+                Don't worry though, we'll help you find your way back!
+            </p>
+
+            <div class="error-suggestions">
+                <h3>What you can do:</h3>
+                <ul>
+                    <li><i class="fas fa-home"></i> Go back to our <a href="{{ url_for('index') }}">home page</a></li>
+                    <li><i class="fas fa-search"></i> Try searching for a product</li>
+                    <li><i class="fas fa-history"></i> Check your <a href="{{ url_for('history') if user else url_for('index') }}">search history</a></li>
+                </ul>
+            </div>
+
+            <div class="error-actions">
+                <a href="{{ url_for('index') }}" class="cta-button primary">
+                    <i class="fas fa-home"></i> Back to Home
+                </a>
+                <button onclick="history.back()" class="cta-button secondary">
+                    <i class="fas fa-arrow-left"></i> Go Back
+                </button>
+            </div>
+        </div>
+
+        <!-- Popular searches for fallback -->
+        <div class="popular-searches">
+            <h3>Popular Searches:</h3>
+            <div class="search-tags">
+                <a href="{{ url_for('search', query='iphone') }}" class="search-tag">iPhone</a>
+                <a href="{{ url_for('search', query='nike shoes') }}" class="search-tag">Nike Shoes</a>
+                <a href="{{ url_for('search', query='laptop') }}" class="search-tag">Laptop</a>
+                <a href="{{ url_for('search', query='headphones') }}" class="search-tag">Headphones</a>
+                <a href="{{ url_for('search', query='samsung') }}" class="search-tag">Samsung</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.error-page {
+    text-align: center;
+    padding: 2rem 0;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.error-illustration i {
+    font-size: 8rem;
+    color: var(--accent-yellow);
+    margin-bottom: 1rem;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+.error-code {
+    font-size: 6rem;
+    font-weight: 700;
+    color: var(--heading-color);
+    margin: 0;
+    line-height: 1;
+}
+
+.error-title {
+    font-size: 2.5rem;
+    color: var(--heading-color);
+    margin: 1rem 0;
+}
+
+.error-message {
+    font-size: 1.1rem;
+    color: var(--secondary-text);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.error-suggestions {
+    text-align: left;
+    background: var(--content-bg);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    margin: 2rem 0;
+}
+
+.error-suggestions h3 {
+    color: var(--heading-color);
+    margin-bottom: 1rem;
+}
+
+.error-suggestions ul {
+    list-style: none;
+    padding: 0;
+}
+
+.error-suggestions li {
+    margin: 0.5rem 0;
+    color: var(--primary-text);
+}
+
+.error-suggestions li i {
+    color: var(--accent-yellow);
+    margin-right: 0.5rem;
+}
+
+.error-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 2rem 0;
+}
+
+.popular-searches {
+    margin-top: 3rem;
+}
+
+.popular-searches h3 {
+    color: var(--heading-color);
+    margin-bottom: 1rem;
+}
+
+.search-tags {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.search-tag {
+    padding: 0.5rem 1rem;
+    background: var(--secondary-bg);
+    color: var(--primary-text);
+    border-radius: 25px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 1px solid var(--border-color);
+}
+
+.search-tag:hover {
+    background: var(--accent-yellow);
+    color: #111;
+    transform: translateY(-2px);
+}
+</style>
+{% endblock %}

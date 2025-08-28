@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% block title %}Your Search History - VeroVista{% endblock %}
+
+{% block content %}
+<div class="container content-section">
+    <div class="history-header animate-on-scroll">
+        <h1 class="page-title">
+            <i class="fas fa-history"></i> Your Search History
+        </h1>
+        <p class="page-description">
+            Products you've viewed are saved here for easy access.
+        </p>
+    </div>
+
+    {% if products %}
+        <div class="history-stats animate-on-scroll">
+            <div class="stat-item">
+                <i class="fas fa-eye"></i>
+                <span>{{ products|length }} product{{ 's' if products|length != 1 else '' }} viewed</span>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-clock"></i>
+                <span>Last 30 items shown</span>
+            </div>
+        </div>
+
+        <div class="history-grid">
+            {% for product in products %}
+            <div class="history-card animate-on-scroll" data-product-id="{{ product.product_id }}">
+                <a href="{{ url_for('product_detail', product_id=product.product_id) }}" class="card-link">
+                    <div class="image-container">
+                        <img src="{{ product.image_url }}" alt="{{ product.name | truncate(50) }}" loading="lazy">
+                        <div class="viewed-badge">
+                            <i class="fas fa-eye"></i> Viewed
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3>{{ product.name | truncate(50, True) }}</h3>
+                        <p class="brand">{{ product.brand }}</p>
+                        {% set min_price = product.offers | selectattr('price') | map(attribute='price') | min %}
+                        {% if min_price %}
+                        <div class="price-info">
+                            <span class="price">From ₹{{ "%.0f"|format(min_price) }}</span>
+                            <span class="offers-count">{{ product.offers|length }} offer{{ 's' if product.offers|length != 1 else '' }}</span>
+                        </div>
+                        {% endif %}
+                    </div>
+                </a>
+
+                <!-- Quick Actions -->
+                <div class="card-actions">
+                    <a href="{{ url_for('product_detail', product_id=product.product_id) }}" 
+                       class="action-btn view" title="View Details">
+                        <i class="fas fa-eye"></i>
+                    </a>
+                    <button class="action-btn remove" onclick="removeFromHistory('{{ product.product_id }}')" 
+                            title="Remove from History">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="history-actions animate-on-scroll">
+            <button onclick="clearHistory()" class="cta-button danger">
+                <i class="fas fa-trash-alt"></i> Clear All History
+            </button>
+        </div>
+    {% else %}
+        <div class="empty-history animate-on-scroll">
+            <div class="empty-icon">
+                <i class="fas fa-box-open"></i>
+            </div>
+            <h2>Your search history is empty</h2>
+            <p>Products you view will appear here for easy access later.</p>
+            <div class="empty-actions">
+                <a href="{{ url_for('index') }}" class="cta-button primary">
+                    <i class="fas fa-search"></i> Start Searching
+                </a>
+            </div>
+        </div>
+    {% endif %}
+</div>
+
+<script>
+function removeFromHistory(productId) {
+    if (confirm('Remove this product from your history?')) {
+        // For demo purposes, just hide the card
+        const card = document.querySelector(`[data-product-id="${productId}"]`);
+        if (card) {
+            card.style.animation = 'fadeOut 0.3s ease-out';
+            setTimeout(() => card.remove(), 300);
+        }
+    }
+}
+
+function clearHistory() {
+    if (confirm('Are you sure you want to clear all your search history? This action cannot be undone.')) {
+        // For demo purposes, redirect to empty history
+        window.location.href = '{{ url_for("history") }}';
+    }
+}
+</script>
+{% endblock %}

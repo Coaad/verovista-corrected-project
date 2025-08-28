@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+
+{% block title %}VeroVista - Price & Review Comparison Search{% endblock %}
+
+{% block content %}
+    <section class="hero">
+        <div class="container">
+            <h1 class="animate-on-scroll">Find Your Best Deal</h1>
+            <p class="animate-on-scroll">
+                Search electronics & clothing, compare prices, and check review insights 
+                across top platforms instantly.
+            </p>
+            <a href="#search-section-anchor" class="cta-button animate-on-scroll">
+                <i class="fas fa-search"></i> Start Searching Now
+            </a>
+        </div>
+    </section>
+
+    <div id="search-section-anchor"></div>
+
+    <div class="container content-section">
+        <section class="search-section animate-on-scroll">
+            <h2><i class="fas fa-search-plus"></i> Search Products</h2>
+            <form id="search-form">
+                <label for="search-query">What product are you looking for?</label>
+                <div class="search-input-container">
+                    <span class="icon-prefix"><i class="fas fa-search"></i></span>
+                    <input type="text" id="search-query" name="query" 
+                           placeholder="E.g., Sony WH-1000XM5, Nike Air Max, iPhone 15..." required>
+                    <button type="submit" id="search-button">
+                        <span id="button-text">Search VeroVista</span>
+                        <span id="loading-spinner" class="hidden">
+                            <i class="fas fa-spinner fa-spin"></i>
+                        </span>
+                    </button>
+                </div>
+            </form>
+        </section>
+    </div>
+
+    <div id="results-container" class="container content-section">
+        <!-- AJAX search results will appear here -->
+    </div>
+
+    <div class="featured-categories-section">
+        <div class="container">
+            <h2 class="content-heading animate-on-scroll">
+                <i class="fas fa-tags"></i> Explore Categories
+            </h2>
+            <div class="category-cards-grid">
+                <div class="category-card animate-on-scroll" data-query="electronics">
+                    <div class="icon-container">
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                    <h3>Electronics</h3>
+                    <p>Phones, Laptops, Headphones</p>
+                </div>
+                <div class="category-card animate-on-scroll" data-query="clothing">
+                    <div class="icon-container">
+                        <i class="fas fa-tshirt"></i>
+                    </div>
+                    <h3>Clothing</h3>
+                    <p>T-Shirts, Jeans, Hoodies</p>
+                </div>
+                <div class="category-card animate-on-scroll" data-query="shoes">
+                    <div class="icon-container">
+                        <i class="fas fa-shoe-prints"></i>
+                    </div>
+                    <h3>Footwear</h3>
+                    <p>Sneakers, Running Shoes</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% if trending_products %}
+    <div class="container content-section trending-products-section">
+        <h2 class="content-heading animate-on-scroll">
+            <i class="fas fa-fire-alt"></i> Trending Products
+        </h2>
+        <div class="trending-grid">
+            {% for product in trending_products %}
+            <div class="trending-card animate-on-scroll" data-product-id="{{ product.product_id }}">
+                <a href="{{ product.url_for_detail }}" class="card-link">
+                    <div class="image-container">
+                        <img src="{{ product.image_url }}" alt="{{ product.name }}" loading="lazy">
+                        <div class="trending-badge">
+                            <i class="fas fa-fire"></i> Trending
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3>{{ product.name | truncate(50, True) }}</h3>
+                        <p class="brand">{{ product.brand }}</p>
+                        {% set min_price = product.offers | selectattr('price') | map(attribute='price') | min %}
+                        {% if min_price %}
+                        <p class="price">From ₹{{ "%.0f"|format(min_price) }}</p>
+                        {% endif %}
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Features Section -->
+    <div class="features-section">
+        <div class="container">
+            <h2 class="content-heading animate-on-scroll">
+                <i class="fas fa-star"></i> Why Choose VeroVista?
+            </h2>
+            <div class="features-grid">
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Smart Price Comparison</h3>
+                    <p>Compare prices across multiple platforms instantly to find the best deals.</p>
+                </div>
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Secure & Private</h3>
+                    <p>Your data is protected with enterprise-grade security measures.</p>
+                </div>
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Real-time Updates</h3>
+                    <p>Get the latest prices and availability information as they change.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
